@@ -10,6 +10,7 @@ defmodule Forms.Accounts.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :password, :string
   end
 
   @doc """
@@ -17,8 +18,18 @@ defmodule Forms.Accounts.User do
   """
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email])
-    |> validate_required([:email, :name])
+    |> cast(attrs, [:name, :email, :password])
+    |> validate_required([:email, :name, :password])
     |> unique_constraint(:email, message: "email address entered is already in use")
+  end
+
+  @doc """
+  This returns the changeset for login
+  """
+  def login_changeset(user, attrs \\ %{}) do
+    user
+    |> cast(attrs, [:email, :password])
+    |> validate_required([:email, :password])
+    |> validate_format(:email, ~r/@/)
   end
 end

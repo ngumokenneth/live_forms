@@ -28,6 +28,7 @@ defmodule FormsWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import FormsWeb.ConnCase
+      import Forms.Factory
     end
   end
 
