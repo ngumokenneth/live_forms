@@ -31,5 +31,6 @@ defmodule Forms.Accounts.User do
     |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
     |> validate_format(:email, ~r/@/)
+    |> validate_length(:password, min: 8)
   end
 end

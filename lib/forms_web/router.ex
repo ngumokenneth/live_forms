@@ -20,6 +20,13 @@ defmodule FormsWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/", FormsWeb.Live.Accounts do
+    pipe_through [:browser]
+
+    live "/login", Login, :index
+    live "/home", Home, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", FormsWeb do
   #   pipe_through :api
