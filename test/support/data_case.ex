@@ -24,6 +24,7 @@ defmodule Forms.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Forms.DataCase
+      import Forms.Factory
     end
   end
 
