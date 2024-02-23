@@ -48,7 +48,7 @@ defmodule Forms.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
       {:ex_machina, "~> 2.7", only: [:test]},
-      {:faker_elixir_octopus, "~> 1.0", only: [:test]}
+      {:faker_elixir_octopus, "~> 1.0"}
     ]
   end
 
