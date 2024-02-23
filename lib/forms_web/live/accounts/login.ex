@@ -8,7 +8,9 @@ defmodule FormsWeb.Live.Accounts.Login do
   @impl Phoenix.LiveView
   def render(assigns) do
     ~H"""
-    <div class="container grid max-w-md px-4 pb-5 mx-auto border border-gray-300 rounded-sm shadow-md">
+    <div class="container grid mx-auto max-w-md border border-gray-300 shadow-md rounded-sm px-4 pb-5">
+      <p class="text-lg font-bold text-gray-900 py-5">Login to your account</p>
+
       <.simple_form for={@form} id="login_form" class="my-8" phx-change="validate" phx-submit="submit">
         <.input label="Email Address" field={@form[:email]} type="text" />
         <.input label="Password" field={@form[:password]} type="password" />
