@@ -14,7 +14,9 @@ defmodule FormsWeb.LoginTest do
       email_input = element(view, "input#login_email")
       assert has_element?(email_input)
 
-      ## TODO: Write test that asserts the existence of the password field
+      # Get password field
+      password_input = element(view, "input#login_password")
+      assert(has_element?(password_input))
     end
   end
 end

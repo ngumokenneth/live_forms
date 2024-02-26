@@ -4,6 +4,17 @@ defmodule Forms.Accounts do
   """
   alias Forms.Accounts.User
   alias Forms.Accounts.User.Query
+  alias Forms.Repo
+
+  def register_user(attrs) do
+    %User{}
+    |> User.registration_changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def change_user(user \\ %User{}, attrs \\ %{}) do
+    User.registration_changeset(user, attrs)
+  end
 
   @doc """
   Logs in a user to their account

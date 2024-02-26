@@ -25,6 +25,7 @@ defmodule FormsWeb.Router do
 
     live "/login", Login, :index
     live "/home", Home, :index
+    live "/register", UserRegistrationLive
   end
 
   # Other scopes may use custom stacks.

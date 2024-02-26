@@ -33,4 +33,11 @@ defmodule Forms.Accounts.User do
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 8)
   end
+
+  def registration_changeset(%__MODULE__{} = user, attrs \\ %{}) do
+    user
+    |> cast(attrs, [:name, :email, :password])
+    |> validate_required([:name, :email, :password])
+    |> validate_format(:email, ~r/@/)
+  end
 end

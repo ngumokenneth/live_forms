@@ -1,4 +1,5 @@
-defmodule Forms.UserRegistrationLive do
+defmodule FormsWeb.Live.Accounts.UserRegistrationLive do
+  use FormsWeb, :live_view
   alias Forms.Accounts
   alias Forms.Accounts.User
 
@@ -9,7 +10,7 @@ defmodule Forms.UserRegistrationLive do
 
   @impl Phoenix.LiveView
   def handle_params(_unsigned_params, _uri, socket) do
-    {:noreply, prepare_socket_for_a_user(socket)}
+    {:noreply, prepare_socket_for_registration(socket)}
   end
 
   @impl Phoenix.LiveView
@@ -21,9 +22,10 @@ defmodule Forms.UserRegistrationLive do
     {:noreply, handle_submit(user_params, socket)}
   end
 
-  defp prepare_socket_for_a_user(socket) do
-    changeset = Accounts.change_user()
+  def prepare_socket_for_registration(socket) do
+    changeset = Accounts.change_user_for_login()
     form = to_form(changeset, as: "user")
+
     assign(socket, :form, form)
   end
 
@@ -39,8 +41,11 @@ defmodule Forms.UserRegistrationLive do
 
   def handle_submit(user_params, socket) do
     case Accounts.register_user(user_params) do
-      {:ok, _user} -> push_navigate(socket, to: ~p"/login")
-      {:error, :error} -> put_flash(socket, error: "registration failed")
+      {:ok, _user} ->
+        push_navigate(socket, to: ~p"/login")
+
+      {:error, :registration_failed} ->
+        put_flash(socket, :error, "registration failed")
     end
   end
 end
