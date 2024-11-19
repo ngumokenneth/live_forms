@@ -8,7 +8,7 @@ defmodule Forms.Accounts.User do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "users" do
-    field :name, :string
+
     field :email, :string
     field :password, :string
   end
@@ -18,8 +18,8 @@ defmodule Forms.Accounts.User do
   """
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password])
-    |> validate_required([:email, :name, :password])
+    |> cast(attrs, [:email, :password])
+    |> validate_required([:email, :password])
     |> unique_constraint(:email, message: "email address entered is already in use")
   end
 
@@ -36,8 +36,8 @@ defmodule Forms.Accounts.User do
 
   def registration_changeset(%__MODULE__{} = user, attrs \\ %{}) do
     user
-    |> cast(attrs, [:name, :email, :password])
-    |> validate_required([:name, :email, :password])
+    |> cast(attrs, [:email, :password])
+    |> validate_required([:email, :password])
     |> validate_format(:email, ~r/@/)
   end
 end

@@ -29,10 +29,7 @@ defmodule FormsWeb.Live.Accounts.UserRegistrationLive do
     assign(socket, :form, form)
   end
 
-  defp handle_validate(
-         %{"name" => _, "email" => _, "password" => _} = user_params,
-         socket
-       ) do
+  defp handle_validate( user_params, socket) do
     changeset = Accounts.change_user(%User{}, user_params)
 
     form = to_form(%{changeset | action: :validate}, as: "user")
